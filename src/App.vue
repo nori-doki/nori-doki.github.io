@@ -12,8 +12,7 @@ import TheHeader from '@/components/organisms/TheHeader.vue';
 
 <style lang="scss">
 .app {
-  height: 100%;
-  overflow: hidden;
+  min-height: 100vh;
   position: relative;
   &-animation {
     margin-bottom: 0;

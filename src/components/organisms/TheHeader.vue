@@ -1,7 +1,8 @@
 <template>
     <header>
         <div class="navigation">
-            <div v-for="item in items" :key="item.label" class="navigation-item" @click="navigateTo(item.route, item)">
+            <div v-for="item in items" :key="item.label" class="navigation-item" @click="scrollTo(item.label, item)"
+            >
                 <div v-show="item.isActive" class="navigation-item-active"></div>
                 <i :class="item.icon"></i>
                 <span>{{ item.label }}</span>
@@ -11,10 +12,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 const items = ref([
     {
@@ -24,9 +22,9 @@ const items = ref([
         isActive: true
     },
     {
-        label: 'resume',
+        label: 'skills',
         icon: 'pi pi-user',
-        route: '/resume',
+        route: '/skills',
         isActive: false
     },
     {
@@ -43,16 +41,59 @@ const items = ref([
     }
 ]);
 
-function navigateTo(to, item) {
-    router.push(to);
-    updateActiveItem(item);
-}
+function scrollTo(to, item) {
+    if (to === 'home') {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+        });
+    } else {
+        document.getElementById(to).scrollIntoView({ behavior: 'smooth' });
+    }
+    setTimeout(() => {
+        updateActiveItem(item);
+    }, 200);
+};
 
 function updateActiveItem(item) {
     items.value.forEach(i => {
         i.isActive = i.label === item.label;
     });
+};
+
+function updateActiveOnScroll(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const activeItem = items.value.find(item => item.label === entry.target.id);
+            if (activeItem) {
+                updateActiveItem(activeItem);
+            }
+        }
+    });
 }
+
+onMounted(() => {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver(updateActiveOnScroll, observerOptions);
+
+    items.value.forEach(item => {
+        const section = document.getElementById(item.label);
+        if (section) {
+            observer.observe(section);
+        }
+    });
+
+    onBeforeUnmount(() => {
+        observer.disconnect();
+    });
+});
+
 </script>
 
 <style lang="scss">
@@ -60,6 +101,9 @@ header {
     display: flex;
     justify-content: center;
     width: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
 
     .navigation {
         display: flex;
