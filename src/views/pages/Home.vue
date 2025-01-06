@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <div class="home-container">
+        <section class="home-container" id="home">
             <Typed :options="options" class="home-container-typing">
                 <h1 class="typing"></h1>
             </Typed>
@@ -11,7 +11,10 @@
                 </div>
                 <img class="home-container-description-image"src="@/assets/img/noridoki.gif" alt="Pixel art tuxedo cat gif" title="This is Nori, my son. "/>
             </div>
-        </div>
+        </section>
+        <SkillsSection />
+        <ProjectsSection />
+        <ContactSection />
     </div>
 </template>
 
@@ -19,9 +22,12 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { Typed } from "@duskmoon/vue3-typed-js";
+import SkillsSection from '@/components/organisms/SkillsSection.vue';
+import ProjectsSection from '@/components/organisms/ProjectsSection.vue';
+import ContactSection from '@/components/organisms/ContactSection.vue';
 
 onMounted(() => {
-    getUserCountry();
+    // getUserCountry();
 });
 
 const options = {
@@ -58,15 +64,13 @@ async function getUserCountry() {
 .home {
     position: absolute;
     width: 100%;
-    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 50px;
 
     &-container {
-        width: 70%;
-        height: fit-content;
         display: flex;
         flex-direction: column;
 
@@ -105,5 +109,18 @@ async function getUserCountry() {
             }
         }
     }
+}
+
+section {
+    border: 1px solid orange;
+    width: 80%;
+    max-width: 700px;
+    height: 85vh;
+    padding-top: 50px;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 </style>
