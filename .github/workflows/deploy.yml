@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger on push to the main branch
+      - main 
 
 jobs:
   deploy:
@@ -16,8 +16,8 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18' # Ensure compatibility with your project
-
+        node-version: 18
+        cache: "npm"
     - name: Install dependencies
       run: npm install
 
