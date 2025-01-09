@@ -8,7 +8,7 @@
                 <div class="contact-content-container">
                     <form @submit.prevent="submitForm" class="contact-content-form">
                         <input 
-                            type="mail" 
+                            type="email"
                             placeholder="Your email" 
                             required
                             v-model="email"
