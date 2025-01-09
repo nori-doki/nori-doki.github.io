@@ -7,6 +7,7 @@
                 <p>{{ item.label }}</p>
             </div>
         </div>
+        <img class="skills-gif" src="@/assets/img/noridoki_skills.gif" alt="Pixel art tuxedo cat behind computer screen gif" />
     </section>
 </template>
 
@@ -91,7 +92,6 @@ const stack = [
 
         &-item {
             display: flex;
-            // flex-direction: row;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
@@ -104,6 +104,11 @@ const stack = [
     .icon {
         display: block;
         margin-bottom: 0.5rem;
+    }
+
+    &-gif {
+        width: 70px;
+        margin-top: 4rem;
     }
 }
 </style>

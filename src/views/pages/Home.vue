@@ -112,11 +112,11 @@ async function getUserCountry() {
 }
 
 section {
-    border: 1px solid orange;
     width: 80%;
     max-width: 700px;
-    height: 85vh;
-    padding-top: 50px;
+    min-height: 85vh;
+    padding-top: 100px;
+    padding-bottom: 30px;
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
