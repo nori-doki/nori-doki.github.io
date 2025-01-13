@@ -1,9 +1,11 @@
 <template>
     <header>
         <div class="navigation">
-            <div v-for="item in items" :key="item.label" class="navigation-item" @click="scrollTo(item.label, item)"
+            <div v-for="item in items" :key="item.label" class="navigation-item" :id="`nav-${item.label}`" @click="scrollTo(item.label, item)"
             >
-                <div v-show="item.isActive" class="navigation-item-active"></div>
+                <div class="navigation-item-active"
+                    :class="{ active: item.label === 'home' }" 
+                ></div>
                 <i :class="item.icon"></i>
                 <span>{{ item.label }}</span>
             </div>
@@ -42,6 +44,7 @@ const items = ref([
 ]);
 
 function scrollTo(to, item) {
+    console.log('scrollTo:', to);
     if (to === 'home') {
         window.scrollTo({
             top: 0,
@@ -51,49 +54,33 @@ function scrollTo(to, item) {
     } else {
         document.getElementById(to).scrollIntoView({ behavior: 'smooth' });
     }
-    setTimeout(() => {
-        updateActiveItem(item);
-    }, 200);
 };
-
-function updateActiveItem(item) {
-    items.value.forEach(i => {
-        i.isActive = i.label === item.label;
-    });
-};
-
-function updateActiveOnScroll(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const activeItem = items.value.find(item => item.label === entry.target.id);
-            if (activeItem) {
-                updateActiveItem(activeItem);
-            }
-        }
-    });
-}
 
 onMounted(() => {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
-    };
-
-    const observer = new IntersectionObserver(updateActiveOnScroll, observerOptions);
-
-    items.value.forEach(item => {
-        const section = document.getElementById(item.label);
-        if (section) {
-            observer.observe(section);
-        }
-    });
-
-    onBeforeUnmount(() => {
-        observer.disconnect();
-    });
+    window.addEventListener('scroll', handleScroll);
 });
 
+onBeforeUnmount(() => {
+    window.removeEventListener('scroll', handleScroll);
+});
+
+function handleScroll() {
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => {
+        if(window.scrollY >= section.offsetTop - 100 && window.scrollY < section.offsetTop + section.offsetHeight) {
+            const navLinks = document.querySelectorAll('.navigation-item');
+            navLinks.forEach((navLink) => {
+                const div = document.querySelector(`#${navLink.id} > .navigation-item-active`);
+                if(navLink.id === `nav-${section.id}`) {
+                    div.classList.add('active');
+                } else {
+                    div.classList.remove('active');
+                }
+            })
+        }
+    })
+
+}
 </script>
 
 <style lang="scss">
@@ -125,13 +112,17 @@ header {
                 padding: 0.3rem;
             }
             &-active {
-                background-color: rgb(196, 211, 176);
+                // background-color: rgb(196, 211, 176);
                 position: absolute;
                 bottom: 0;
                 left: 50;
                 width: 75%;
                 height: 0.3rem;
                 border-radius: 10px;
+
+                &.active {
+                    background-color: rgb(196, 211, 176);
+                }
             }
         }
     }

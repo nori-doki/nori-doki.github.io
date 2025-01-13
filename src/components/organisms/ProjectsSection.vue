@@ -13,7 +13,6 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 
 const projects = [
     {
