@@ -19,13 +19,13 @@ const projects = [
         id: 1,
         label: 'Coming soon...',
         description: 'This project is still in development. Stay tuned!',
-        img: "src/assets/img/noridoki_construction.gif",
+        img: "/img/noridoki_construction.gif",
     },
     {
         id: 2,
         label: 'Coming soon...',
         description: 'This project is still in development. Stay tuned!',
-        img: "src/assets/img/noridoki_construction.gif",
+        img: "/img/noridoki_construction.gif",
     },
 ];
 </script>
