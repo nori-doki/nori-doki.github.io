@@ -44,7 +44,6 @@ const items = ref([
 ]);
 
 function scrollTo(to, item) {
-    console.log('scrollTo:', to);
     if (to === 'home') {
         window.scrollTo({
             top: 0,
@@ -87,6 +86,7 @@ function handleScroll() {
 header {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
     position: fixed;
     z-index: 100;
@@ -112,7 +112,6 @@ header {
                 padding: 0.3rem;
             }
             &-active {
-                // background-color: rgb(196, 211, 176);
                 position: absolute;
                 bottom: 0;
                 left: 50;
@@ -128,10 +127,15 @@ header {
     }
 }
 
-@media (max-width: 768px) {
-    header {
-        width: fit-content;
-        margin-left: 10px;
+@media (max-width: 500px) {
+    .navigation {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        background-color: unset;
+        &-item {
+            span {
+                display: none;
+            }
+        }
     }
 }
 </style>

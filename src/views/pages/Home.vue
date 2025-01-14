@@ -55,6 +55,9 @@ const options = {
 
         &-typing {
             height: 3.1rem;
+            min-width: 100%;
+            padding-left: 25px;
+            min-height: 6.5rem;
         }
 
         .typing {
@@ -88,18 +91,65 @@ const options = {
             }
         }
     }
+    section {
+        width: 80%;
+        max-width: 700px;
+        min-height: 90vh;
+        padding-top: 100px;
+        padding-bottom: 30px;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
-section {
-    width: 80%;
-    max-width: 700px;
-    min-height: 90vh;
-    padding-top: 100px;
-    padding-bottom: 30px;
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+@media (max-width: 500px) {
+    .home {
+        width: 100%;
+        padding: 30px 10px;
+
+    &-container {
+
+        &-typing {
+            min-height: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .typing {
+            font-size: 2rem;
+            padding: 5px;
+        }
+        &-description {
+            padding: 10px 5px;
+            flex-direction: column;
+            align-items: center;
+
+            &-text {
+                font-size: 1rem;
+                line-height: 1.3rem;
+                height: fit-content;
+                span {
+                    font-size: 1.5rem;
+                }
+                width: 240px;
+            }
+
+            &-image {
+                width: 90px;
+                height: 90px;
+                margin-top: 1rem;
+            }
+        }
+    }
+    section {
+        width: 95%;
+        min-height: 100vh;
+        padding-top: 80px;
+        margin-top: 0;
+    }
+}
 }
 </style>
