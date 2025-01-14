@@ -111,4 +111,25 @@ const stack = [
         margin-top: 4rem;
     }
 }
+
+@media (max-width: 500px) {
+    .skills {
+        &-stack {
+            max-width: 300px;
+
+            &-item {
+                width: 50px;
+            }
+        }
+
+        &-title {
+            margin-bottom: 1rem;
+        }
+
+        &-gif {
+            width: 60px;
+            margin-top: 2.5rem;
+        }
+    }
+}
 </style>

@@ -13,7 +13,6 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
 
 const projects = [
     {
@@ -77,4 +76,17 @@ const projects = [
     }
 }
 
+@media (max-width: 500px) {
+    .projects-container-item {
+        max-width: 200px;
+    }
+
+    .projects-title {
+        margin-bottom: 2rem;
+    }
+
+    .projects-gif {
+        width: 70px;
+    }
+}
 </style>

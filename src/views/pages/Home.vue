@@ -19,16 +19,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
 import { Typed } from "@duskmoon/vue3-typed-js";
 import SkillsSection from '@/components/organisms/SkillsSection.vue';
 import ProjectsSection from '@/components/organisms/ProjectsSection.vue';
 import ContactSection from '@/components/organisms/ContactSection.vue';
 
-onMounted(() => {
-    // getUserCountry();
-});
 
 const options = {
   strings: [
@@ -42,22 +37,6 @@ const options = {
   smartBackspace:true,
   showCursor:false
 };
-
-const userData = ref('');
-
-async function getUserCountry() {
-    try {
-        const response = await axios.get('https://ipapi.co/json/');
-        console.log('response:', response.data);
-        userData.value = {};
-        userData.value.countryName = response.data.country_name;
-        userData.value.countryCode = response.data.country_code;
-        userData.value.city = response.data.city;
-        console.log('userData.value:', userData.value)
-    } catch (error) {
-        console.error('error:', error);
-    }
-}
 </script>
 
 <style lang="scss">
@@ -76,6 +55,9 @@ async function getUserCountry() {
 
         &-typing {
             height: 3.1rem;
+            min-width: 100%;
+            padding-left: 25px;
+            min-height: 6.5rem;
         }
 
         .typing {
@@ -109,18 +91,65 @@ async function getUserCountry() {
             }
         }
     }
+    section {
+        width: 80%;
+        max-width: 700px;
+        min-height: 90vh;
+        padding-top: 100px;
+        padding-bottom: 30px;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
-section {
-    width: 80%;
-    max-width: 700px;
-    min-height: 85vh;
-    padding-top: 100px;
-    padding-bottom: 30px;
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+@media (max-width: 500px) {
+    .home {
+        width: 100%;
+        padding: 30px 10px;
+
+    &-container {
+
+        &-typing {
+            min-height: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .typing {
+            font-size: 2rem;
+            padding: 5px;
+        }
+        &-description {
+            padding: 10px 5px;
+            flex-direction: column;
+            align-items: center;
+
+            &-text {
+                font-size: 1rem;
+                line-height: 1.3rem;
+                height: fit-content;
+                span {
+                    font-size: 1.5rem;
+                }
+                width: 240px;
+            }
+
+            &-image {
+                width: 90px;
+                height: 90px;
+                margin-top: 1rem;
+            }
+        }
+    }
+    section {
+        width: 95%;
+        min-height: 100vh;
+        padding-top: 80px;
+        margin-top: 0;
+    }
+}
 }
 </style>

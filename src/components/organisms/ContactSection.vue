@@ -6,14 +6,14 @@
                     <img class="contact-gif" src="@/assets/img/noridoki_contact.gif" alt="Pixel art tuxedo cat behind computer screen gif" />
                 </div>
                 <div class="contact-content-container">
-                    <form @submit.prevent="submitForm" class="contact-content-form">
+                    <form @submit.prevent="submitForm">
                         <input 
                             type="email"
                             placeholder="Your email" 
                             required
                             v-model="email"
                         >
-                        <div style="height: 1.5rem; padding: 0.5rem 1rem;margin: 0.5rem 1rem 0;width: 300px;">
+                        <div class="contact-error">
                             <p v-show="!emailIsValid">This email is not valid.</p>
                         </div>
                         <textarea 
@@ -32,8 +32,8 @@
                             <SpinningLoader v-if="loading" />
                             <span v-else>submit</span>
                         </button>
-                        <div style="height: 1.5rem; padding: 0.5rem 1rem;margin: 0.5rem 1rem 0;width: 300px;">
-                            <p v-show="sendingError">An error happened. Try again or reach me <a href="mailto:inesdai59@gmail.com">here</a>.
+                        <div class="contact-error">
+                            <p v-show="sendingError">An error happened. Try again or reach me <a href="mailto:inesdai59@gmail.com" style="color: black;">here</a>.
                             </p>
                             <p v-show="sendingSuccess" class="success">Your message has been successfully sent 🫰
                             </p>
@@ -108,12 +108,16 @@ const disableSubmitButton = computed(() => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 50%;
+            min-width: 50%;
             max-width: 350px;
             min-height: 400px;
 
             form {
                 height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
 
             input, textarea {
@@ -157,6 +161,38 @@ const disableSubmitButton = computed(() => {
     }
     &-gif {
         width: 120px;
+    }
+    &-error {
+        height: 1.5rem; 
+        margin: 0.5rem 1rem 0;
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .contact-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .contact-content-container {
+        max-width: 280px;
+        min-height: fit-content;
+        width: 100%;
+        input, textarea {
+            margin: 1rem 1rem 0;
+            min-height: 1.5rem;
+            width: 200px;
+        }
+    }
+    .contact-content-button {
+        width: 200px;
+    }
+    .contact-gif {
+        width: 80px;
+    }
+    .contact-error {
+        width: 200px;
     }
 }
 </style>
