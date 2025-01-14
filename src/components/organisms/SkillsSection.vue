@@ -107,7 +107,7 @@ const stack = [
     }
 
     &-gif {
-        width: 70px;
+        width: 90px;
         margin-top: 4rem;
     }
 }
@@ -127,7 +127,7 @@ const stack = [
         }
 
         &-gif {
-            width: 60px;
+            width: 70px;
             margin-top: 2.5rem;
         }
     }
