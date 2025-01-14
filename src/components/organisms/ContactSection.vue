@@ -22,7 +22,6 @@
                             id="message" 
                             cols="20" 
                             rows="10" placeholder="Your message" 
-                            minlength="5"
                             required
                         ></textarea>
                         <button 
