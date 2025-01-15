@@ -3,7 +3,7 @@
         <h2 class="projects-title">projects</h2>
         <div class="projects-container">
             <div v-for="item in projects" :key="item.id" class="projects-container-item" >
-                <img :src="`src/assets/img/${item.img}`" alt="Project image" 
+                <img :src="item.img" alt="Project image" 
                 class="projects-gif" />
                 <h4>{{ item.label }}</h4>
                 <p>{{ item.description }}</p>
@@ -19,13 +19,13 @@ const projects = [
         id: 1,
         label: 'Coming soon...',
         description: 'This project is still in development. Stay tuned!',
-        img: "noridoki_construction.gif",
+        img: "/img/noridoki_construction.gif",
     },
     {
         id: 2,
         label: 'Coming soon...',
         description: 'This project is still in development. Stay tuned!',
-        img: "noridoki_construction.gif",
+        img: "/img/noridoki_construction.gif",
     },
 ];
 </script>
