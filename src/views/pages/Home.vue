@@ -76,7 +76,7 @@ const options = {
             align-items: flex-end;
 
             &-text {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
                 line-height: 1.5rem;
                 height: fit-content;
                 span {
@@ -93,7 +93,7 @@ const options = {
     }
     section {
         width: 80%;
-        max-width: 700px;
+        max-width: 800px;
         min-height: 90vh;
         padding-top: 100px;
         padding-bottom: 30px;
