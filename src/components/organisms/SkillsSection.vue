@@ -88,7 +88,7 @@ const stack = [
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        max-width: 400px;
+        max-width: 700px;
 
         &-item {
             display: flex;
